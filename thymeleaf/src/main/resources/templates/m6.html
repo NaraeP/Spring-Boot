@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="https://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://me2.do/5BvBFJ57">
+</head>
+<body>
+	<h1>Content</h1>
+	
+	<!--/* 
+		시작태그 ~ 끝태그 > PCDATA 조작
+		1. th:text
+			- escaped text
+			- 문자열에 이스케이프 적용함
+			- '<' -> '&lt';
+			- '>' -> '&gt';
+			- 태그 적용 불가
+		
+		2. th:utext
+			- unescaped text
+			- 문자열에 이스케이프 적용안함
+			- 태그 적용 가능
+			- innerHTML
+			
+		인라인 출력
+			- th:inline="text" > 기본값
+			- th:inline="javascript"
+			- th:inline + [[]] > escaped text
+			- th:inline + [()] > unescaped text
+			
+		**위 괄호에 Thymeleaf 주석 달아야 오류 안난다. JSTL? EL? 때와 동일하다**
+	 */-->
+	
+	<div th:text="${txt1}"></div>
+	<div th:text="${txt2}"></div>
+
+	<div th:utext="${txt1}"></div>
+	<div th:utext="${txt2}"></div>
+	
+	<hr>
+	
+	<div th:text="${txt1}"></div>
+	<div th:inline="text">[[${txt1}]]</div>
+	<div>[[${txt1}]]</div>
+	<div>[[${txt2}]]</div>
+	<div>[(${txt2})]</div>
+	
+	<hr>
+	
+	<!-- PCDATA를 조작하는 모든 방법 -->
+	<!-- 아래 태그 출력이 내 목적이라면.. -->
+	<div>이름: 홍길동</div>
+	
+	<p>방법 1</p> <!-- 쌤은 이 3가지를 골고루 사용하신다고 한다. -->
+	<div>이름: <span th:text="${name}"></span></div>
+	
+	<p>방법 2</p>
+	<div th:text="'이름: 홍길동'"></div>
+	
+	<p>방법 3</p> <!-- 쌤은 이 3가지를 골고루 사용하신다고 한다. -->
+	<div th:text="|이름: ${name}|"></div>
+	
+	<p>방법 4</p>
+	<div th:inline="text">이름: [[${name}]]</div>
+
+	<p>방법 5</p> <!-- 쌤은 이 3가지를 골고루 사용하신다고 한다. -->
+	<div>이름: [[${name}]]</div>
+	
+
+</body>
+</html>

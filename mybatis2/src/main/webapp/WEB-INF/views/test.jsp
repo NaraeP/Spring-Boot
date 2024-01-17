@@ -9,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Book</h1>
+	<h1>Book(Interface 방식)</h1>
 	
 	<ul>
 		<c:forEach items="${list}" var="dto">
